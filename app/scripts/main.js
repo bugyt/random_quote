@@ -1,3 +1,4 @@
+/*eslint-env jquery*/
 'use strict';
 
 function getQuote() {
@@ -29,6 +30,7 @@ function displayQuote() {
     $('blockquote p').html(JSON.stringify(data.quote));
     $('blockquote footer').html(data.author);
     $('.twitter-share-button').show();
+    $('.twitter-share-button').attr( 'href', 'https://twitter.com/intent/tweet?text='+encodeURI(data.quote+" - "+data.author))
   }).catch(function(error) {
        //   var data = JSON.parse(error);
        $('blockquote').html('Erreur : ' + error.statusText);
