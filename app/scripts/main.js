@@ -30,10 +30,12 @@ function displayQuote() {
     $('blockquote p').html(JSON.stringify(data.quote));
     $('blockquote footer').html(data.author);
     $('.twitter-share-button').show();
-    $('.twitter-share-button').attr( 'href', 'https://twitter.com/intent/tweet?text='+encodeURI(data.quote+" - "+data.author))
+    $('#getMessage span').removeClass('fa-pulse');
+    $('.twitter-share-button').attr( 'href', 'https://twitter.com/intent/tweet?text=' + encodeURI(data.quote + ' - ' + data.author) );
   }).catch(function(error) {
        //   var data = JSON.parse(error);
        $('blockquote').html('Erreur : ' + error.statusText);
+       $('#getMessage span').removeClass('fa-pulse');
        $('.twitter-share-button').hide();
      });
 }
@@ -42,6 +44,7 @@ $(document).ready(function() {
   $('.twitter-share-button').hide();
   displayQuote();
   $('#getMessage').on('click', function() {
+    $('#getMessage span').addClass('fa-pulse');
     displayQuote();
   });
 
